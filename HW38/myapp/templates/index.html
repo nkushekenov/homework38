@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMG page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3pV8TcC2HfdJoAq8SK41jI6IoSF2Gn8F5EA/8b2lGODa8sCT4RCXQ3jRHE" crossorigin="anonymous">
+    <style>
+        .form-container {
+            margin: 20px auto;
+            width: 300px;
+        }
+
+        .thumbnail-display {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .thumbnail-display img {
+            max-width: 100px;
+            max-height: 100px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-container">
+            <form method="post" enctype="multipart/form-data" class="form-group">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="image">Upload image:</label>
+                    <input type="file" name="image" id="image" required class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Upload and Create Thumbnail</button>
+            </form>
+        </div>
+        {% if thumbnail_url %}
+        <div class="thumbnail-display">
+            <p>Thumbnail Created:</p>
+            <img src="{{ thumbnail_url }}" alt="Thumbnail">
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>
